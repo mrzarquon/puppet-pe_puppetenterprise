@@ -19,6 +19,7 @@ pe-ruby-libs, #pe-ruby-libs-1.8.7.370-1.pe.el6.x86_64.rpm
 pe-ruby-rdoc, #pe-ruby-rdoc-1.8.7.370-1.pe.el6.x86_64.rpm 
 pe-ruby-ri, #pe-ruby-ri-1.8.7.370-1.pe.el6.x86_64.rpm 
 pe-ruby-shadow, #pe-ruby-shadow-1.4.1-8.pe.el6.x86_64.rpm
+cronie,
 ]
 
 $pevars = [
@@ -49,8 +50,12 @@ file { '/etc/puppetlabs/facter/facts.d':
 
 file { '/etc/puppetlabs/facter/facts.d/puppet_enterprise_installer.txt':
   ensure  => file,
-  content => 'fact_is_puppetagent=true',
-  replace => false,
+  content => "fact_is_puppetagent=true
+fact_stomp_port=61613
+fact_stomp_server=master
+fact_is_puppetmaster=false
+fact_is_puppetca=false
+fact_is_puppetconsole=false",
   require => File['/etc/puppetlabs/facter/facts.d'],
 }
 
@@ -70,6 +75,8 @@ file { '/opt/puppet/pe_version':
   owner   => root,
   group   => root,
   mode    => 0400,
+  content => "2.6.1",
+  replace => "false",
   require => Package['pe-puppet'],
 }
 
