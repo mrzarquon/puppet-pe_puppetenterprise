@@ -58,11 +58,30 @@ service { 'pe-puppet':
   require => Exec['create-puppet.conf'],
 }
 
+file { '/opt/puppet/pe_version':
+  ensure => file,
+  owner  => root,
+  group  => root,
+  mode   => 0400,
+}
 
+file { '/usr/local/bin/facter':
+  ensure  => 'link',
+  target  => '/opt/puppet/bin/facter',
+  require => Package['pe-facter'],
+}
 
+file { '/usr/local/bin/puppet':
+  ensure  => 'link'
+  target  => '/opt/puppet/bin/puppet',
+  require => Package['pe-puppet'],
+}
 
-
-
+file { '/usr/local/bin/hiera':
+  ensure  => 'link',
+  target  => '/opt/puppet/bin/facter',
+  require => Package['pe-hiera'],
+}
 
 
 
