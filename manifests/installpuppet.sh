@@ -4,8 +4,8 @@
 
 cat >> /etc/yum.repos.d/puppet-local.repo << _PUPPET_REPO
 [local]
-name=CentOS-$releasever - local packages for $basearch
-baseurl=file:///files/CentOS/$releasever/local/$basearch
+name=CentOS-\$releasever - local packages for \$basearch
+baseurl=file:///files/CentOS/\$releasever/local/\$basearch
 enabled=1
 gpgcheck=0
 protect=1

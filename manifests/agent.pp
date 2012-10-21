@@ -22,8 +22,8 @@ pe-ruby-shadow, #pe-ruby-shadow-1.4.1-8.pe.el6.x86_64.rpm
 ]
 
 $pevars = [
-  'q_puppetagent_server=master',
-  'q_puppetagent_certname=centos-test',
+  "q_puppetagent_server=master",
+  "q_puppetagent_certname=$hostname",
 ]
 
 
@@ -80,7 +80,7 @@ file { '/usr/local/bin/facter':
 }
 
 file { '/usr/local/bin/puppet':
-  ensure  => 'link'
+  ensure  => 'link',
   target  => '/opt/puppet/bin/puppet',
   require => Package['pe-puppet'],
 }
@@ -88,7 +88,7 @@ file { '/usr/local/bin/puppet':
 file { '/usr/local/bin/hiera':
   ensure  => 'link',
   target  => '/opt/puppet/bin/facter',
-  require => Package['pe-hiera'],
+  require => Package['pe-rubygem-hiera'],
 }
 
 
