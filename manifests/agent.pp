@@ -49,7 +49,7 @@ file { '/etc/puppetlabs/facter/facts.d/puppet_enterprise_installer.txt':
 }
 
 exec { 'create-puppet.conf':
-  command => "/opt/puppet/bin/erb -T - 'puppet.conf.erb' > '/etc/puppetlabs/puppet/puppet.conf'",
+  command => "/opt/puppet/bin/erb -T - '/modules/puppet-module-peagent/manifests/puppet.conf.erb' > '/etc/puppetlabs/puppet/puppet.conf'",
   require => File['/etc/puppetlabs/facter/facts.d/puppet_enterprise_installer.txt'],
 }
 
@@ -59,10 +59,11 @@ service { 'pe-puppet':
 }
 
 file { '/opt/puppet/pe_version':
-  ensure => file,
-  owner  => root,
-  group  => root,
-  mode   => 0400,
+  ensure  => file,
+  owner   => root,
+  group   => root,
+  mode    => 0400,
+  require => Package['pe-puppet'],
 }
 
 file { '/usr/local/bin/facter':
