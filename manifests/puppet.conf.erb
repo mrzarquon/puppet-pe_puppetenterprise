@@ -3,8 +3,8 @@
   @master_install   = ENV["q_puppetmaster_install"] == 'y' ? true : false
   @agent_install    = ENV["q_puppetagent_install"] == 'y' ? true : false
   @console_install  = ENV["q_puppet_enterpriseconsole_install"] == 'y' ? true : false
-  @agent_server     = "master"
-  @agent_certname   = "centos63b-test"
+  @agent_server     = ENV["q_puppetagent_server"]
+  @agent_certname   = ENV["q_puppetagent_certname"]
   @master_certname  = ENV["q_puppetmaster_certname"]
   @dns_alt_names    = ENV["q_puppetmaster_dnsaltnames"]
   @host_name        = ENV["PLATFORM_HOSTNAME"]

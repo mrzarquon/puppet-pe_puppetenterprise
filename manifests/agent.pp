@@ -21,6 +21,12 @@ pe-ruby-ri, #pe-ruby-ri-1.8.7.370-1.pe.el6.x86_64.rpm
 pe-ruby-shadow, #pe-ruby-shadow-1.4.1-8.pe.el6.x86_64.rpm
 ]
 
+$pevars = [
+  'q_puppetagent_server=master',
+  'q_puppetagent_certname=centos-test',
+]
+
+
 package { $peagent:
   ensure => present,
   before => File['/etc/puppetlabs/facter'],
@@ -49,8 +55,9 @@ file { '/etc/puppetlabs/facter/facts.d/puppet_enterprise_installer.txt':
 }
 
 exec { 'create-puppet.conf':
-  command => "/opt/puppet/bin/erb -T - '/modules/puppet-module-peagent/manifests/puppet.conf.erb' > '/etc/puppetlabs/puppet/puppet.conf'",
-  require => File['/etc/puppetlabs/facter/facts.d/puppet_enterprise_installer.txt'],
+  command     => "/opt/puppet/bin/erb -T - '/modules/puppet-module-peagent/manifests/puppet.conf.erb' > '/etc/puppetlabs/puppet/puppet.conf'",
+  environment => $pevars,
+  require     => File['/etc/puppetlabs/facter/facts.d/puppet_enterprise_installer.txt'],
 }
 
 service { 'pe-puppet':
