@@ -35,6 +35,15 @@ class pe_puppetenterprise::agent(
 
   service { 'pe-puppet':
     ensure  => running,
+    require => File['/etc/puppetlabs/puppet/puppet.conf'],
+  }
+  
+  file {'/etc/puppetlabs/puppet/puppet.conf':
+    ensure  => file,
+    owner   => 'pe-puppet',
+    group   => 'pe-puppet',
+    mode    => 0600,
+    content => template("pe_puppetenterprise/puppet.conf.erb"),
     require => File['/opt/puppet/pe_version'],
   }
 

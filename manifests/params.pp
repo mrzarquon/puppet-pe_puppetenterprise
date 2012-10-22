@@ -22,4 +22,7 @@ class pe_enterprise::params {
   pe-ruby-shadow, #pe-ruby-shadow-1.4.1-8.pe.el6.x86_64.rpm
   cronie,
   ]
+
+  $pe_master = 'master'
+
 }
