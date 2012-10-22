@@ -1,4 +1,4 @@
-class pe_enterprise::params {
+class pe_puppetenterprise::params {
   $pe_agent_pkgs = [
   pe-augeas, #pe-augeas-0.10.0-3.pe.el6.x86_64.rpm"
   pe-augeas-libs, #pe-augeas-libs-0.10.0-3.pe.el6.x86_64.rpm"
