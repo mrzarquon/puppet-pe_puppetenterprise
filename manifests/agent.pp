@@ -1,5 +1,6 @@
 class pe_puppetenterprise::agent(
   $pe_agent_pkgs = $pe_puppetenterprise::params::pe_agent_pkgs,
+  $pe_master = $pe_puppetenterprise::params::pe_master
 ) inherits pe_puppetenterprise::params{
 
   package { $pe_agent_pkgs:
