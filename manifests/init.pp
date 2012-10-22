@@ -1,0 +1,4 @@
+class pe_puppetenterprise {
+
+
+}
