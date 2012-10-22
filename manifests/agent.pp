@@ -26,11 +26,11 @@ class pe_puppetenterprise::agent(
   file { '/etc/puppetlabs/facter/facts.d/puppet_enterprise_installer.txt':
     ensure  => file,
     content => "fact_is_puppetagent=true
-  fact_stomp_port=61613
-  fact_stomp_server=master
-  fact_is_puppetmaster=false
-  fact_is_puppetca=false
-  fact_is_puppetconsole=false",
+fact_stomp_port=61613
+fact_stomp_server=master
+fact_is_puppetmaster=false
+fact_is_puppetca=false
+fact_is_puppetconsole=false",
     require => File['/etc/puppetlabs/facter/facts.d'],
   }
 
