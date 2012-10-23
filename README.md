@@ -1,4 +1,4 @@
-puppet-module-peagent
+pe_enterprise installer
 =====================
 
 This is a proof of concept project to see what goes into getting a PE agent up and running.
