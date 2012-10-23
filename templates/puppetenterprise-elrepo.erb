@@ -1,6 +1,6 @@
 [puppetenterprise]
-name=CentOS-$releasever - local packages for $basearch
-baseurl=http://<%= @pe_master %>/CentOS/$releasever/puppetenterprise/$basearch
+name=EL-$releasever - Puppet Enterprise packages for $basearch
+baseurl=http://<%= @pe_master %>/el-$releasever-$basearch
 enabled=1
 gpgcheck=0
 protect=1
