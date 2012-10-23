@@ -8,10 +8,19 @@ class pe_puppetenterprise::elrepo(
   include apache
 
   file{$pe_repodata:
-    ensure => directory,
-    owner  => "www-data",
-    group  => "www-data",
-    mode   => 0644,
+    ensure  => directory,
+    owner   => "www-data",
+    group   => "www-data",
+    mode    => 0644,
+  }
+
+  file{"${pe_repodata}/centosKS.cfg":
+    ensure  => file,
+    owner   => "www-data",
+    group   => "www-data",
+    mode    => 0644,
+    require => File["$pe_repodata"],
+    source  => 'puppet:///modules/pe_puppetenterprise/centosKS.cfg',
   }
 
   exec{'download-pe':
@@ -20,7 +29,7 @@ class pe_puppetenterprise::elrepo(
     creates => "${pe_repodata}/${pe_tarball}",
     require => File[$pe_repodata],
     before  => Exec["unpack-el-6-x86_64"],
-    timeout => 900,
+    timeout => 1200,
   }
 
   file{"${pe_repodata}/CentOS":
