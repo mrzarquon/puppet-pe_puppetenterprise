@@ -34,7 +34,7 @@ fact_is_puppetconsole=false",
     require => File['/etc/puppetlabs/facter/facts.d'],
   }
 
-  service { 'pe-puppet':
+  service { 'pe-puppet-agent':
     ensure  => running,
     require => File['/etc/puppetlabs/puppet/puppet.conf'],
   }
