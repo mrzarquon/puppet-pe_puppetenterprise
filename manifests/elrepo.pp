@@ -78,6 +78,15 @@ class pe_puppetenterprise::elrepo(
       Exec["unpack-install"]
     ]
   }
+  
+  file{"/etc/apache2/ports.conf":
+    ensure => file,
+    owner  => "root",
+    group  => "root",
+    mode   => "0644",
+    source => "puppet:///modules/pe_puppetenterprise/ports.conf",
+  }
+  
   apache::vhost{"${pe_master}":
     docroot  => "${pe_repodata}/${pe_installer}/packages/",
     priority => 10,
