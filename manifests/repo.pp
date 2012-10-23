@@ -1,4 +1,4 @@
-class pe_puppetenteprise::repoi(
+class pe_puppetenterprise::repo(
   $pe_version = $pe_puppetenterprise::params::pe_version,
   $pe_url = $pe_puppetenterprise::params::pe_url,
   $pe_repodata = $pe_puppetenterprise::params::pe_repodata
