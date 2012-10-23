@@ -1,4 +1,2 @@
 class pe_puppetenterprise {
-
-
 }

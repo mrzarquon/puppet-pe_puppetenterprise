@@ -24,7 +24,8 @@ class pe_puppetenterprise::params {
   ]
 
   $pe_master = 'master'
-  $pe_url = "https://pm.puppetlabs.com/puppet-enterprise/puppet-enterprise-${pe_version}-all.tar.gz"
+  $pe_tarball = "puppet-enterprise-${pe_version}-all.tar.gz"
+  $pe_url = "https://s3.amazonaws.com/pe-builds/released/${pe_version}/${pe_tarball}"
   $pe_version = '2.6.1'
   $pe_repodata = '/opt/puppet/share/repodata'
 }

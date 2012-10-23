@@ -1,1 +1,2 @@
-include pe_puppetenterprise::repo
+include pe_puppetenterprise
+include pe_puppetenterprise::elrepo
