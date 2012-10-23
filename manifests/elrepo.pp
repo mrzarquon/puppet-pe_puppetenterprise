@@ -104,4 +104,38 @@ class pe_puppetenterprise::elrepo(
   }
 
 
+  #create bootstrap environment
+  file{"/etc/puppetlabs/puppet/environments/bootstrap":
+    ensure => directory,
+    owner  => root,
+    group  => root,
+    mode   => 0644,
+  }
+
+  file{"/etc/puppetlabs/puppet/environments/bootstrap/manifests":
+    ensure => directory,
+    owner  => root,
+    group  => root,
+    mode   => 0644,
+  }
+
+  file{"/etc/puppetlabs/puppet/environments/bootstrap/modules":
+    ensure => directory,
+    owner  => root,
+    group  => root,
+    mode   => 0644,
+  }
+
+  file{"/etc/puppetlabs/puppet/environments/bootstrap/manifests/site.pp":
+    ensure => file,
+    owner  => root,
+    group  => root,
+    mode   => "0644",
+    source => "puppet:///modules/pe_puppetenterprise/site.pp",
+  }
+
+  file{"/etc/puppetlabs/puppet/environments/bootstrap/modules/pe_puppetenterprise":
+    ensure => link,
+    target => "/modules/pe_puppetenterprise",
+  }
 }
