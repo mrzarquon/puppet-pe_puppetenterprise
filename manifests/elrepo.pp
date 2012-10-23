@@ -2,7 +2,8 @@ class pe_puppetenterprise::elrepo(
   $pe_tarball = $pe_puppetenterprise::params::pe_tarball,
   $pe_version = $pe_puppetenterprise::params::pe_version,
   $pe_url = $pe_puppetenterprise::params::pe_url,
-  $pe_repodata = $pe_puppetenterprise::params::pe_repodata
+  $pe_repodata = $pe_puppetenterprise::params::pe_repodata,
+  $pe_master = $pe_puppetenterprise::params::pe_master
 ) inherits pe_puppetenterprise::params {
   include apache
 
@@ -77,7 +78,7 @@ class pe_puppetenterprise::elrepo(
     ]
   }
 
-  apache::vhost{'master':
+  apache::vhost{"${pe_master}":
     docroot  => "${pe_repodata}",
     priority => 10,
     port     => 80,
