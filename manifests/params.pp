@@ -1,5 +1,5 @@
 class pe_puppetenterprise::params {
-  $pe_agent_pkgs = [
+  $pe_agent_base = [
   pe-augeas, #pe-augeas-0.10.0-3.pe.el6.x86_64.rpm"
   pe-augeas-libs, #pe-augeas-libs-0.10.0-3.pe.el6.x86_64.rpm"
   pe-facter, #pe-facter-1.6.10-1.pe.el6.noarch.rpm"
@@ -22,6 +22,17 @@ class pe_puppetenterprise::params {
   pe-ruby-shadow, #pe-ruby-shadow-1.4.1-8.pe.el6.x86_64.rpm
   cronie,
   ]
+
+  $pe_agent_dev = [
+  pe-augeas-devel,
+  pe-ruby-devel,
+  ]
+
+  $pe_agent_pkgs = $pe_developer ? {
+    "true"  => [ $pe_agent_base, $pe_agent_dev],
+    default => $pe_agent_base,
+  }
+
 
   $pe_master = 'master'
   $pe_installer = "puppet-enterprise-${pe_version}-all"

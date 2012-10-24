@@ -20,7 +20,6 @@ class pe_puppetenterprise::agent(
     owner   => root,
     group   => root,
     mode    => 0644,
-    require => File['/etc/puppetlabs/facter'],
   }
 
   file { '/etc/puppetlabs/facter/facts.d/puppet_enterprise_installer.txt':
@@ -31,13 +30,12 @@ fact_stomp_server=master
 fact_is_puppetmaster=false
 fact_is_puppetca=false
 fact_is_puppetconsole=false",
-    require => File['/etc/puppetlabs/facter/facts.d'],
   }
 
-  #  service { 'pe-puppet-agent':
-  #  ensure  => running,
-  #  require => File['/etc/puppetlabs/puppet/puppet.conf'],
-  #}
+  service { 'pe-puppet':
+    ensure  => running,
+    require => File['/etc/puppetlabs/puppet/puppet.conf'],
+  }
   
   file {'/etc/puppetlabs/puppet/puppet.conf':
     ensure  => file,
@@ -75,6 +73,4 @@ fact_is_puppetconsole=false",
     target  => '/opt/puppet/bin/facter',
     require => Package['pe-rubygem-hiera'],
   }
-
-
 }
