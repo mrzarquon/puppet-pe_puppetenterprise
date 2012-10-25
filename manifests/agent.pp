@@ -32,7 +32,7 @@ fact_is_puppetca=false
 fact_is_puppetconsole=false",
   }
 
-  service { 'pe-puppet':
+  service { 'pe-puppet-agent':
     ensure  => running,
     require => File['/etc/puppetlabs/puppet/puppet.conf'],
   }
@@ -53,24 +53,24 @@ fact_is_puppetconsole=false",
     mode    => 0400,
     content => "2.6.1",
     replace => "false",
-    require => Package['pe-puppet'],
+    require => Package[$pe_agent_pkgs],
   }
 
   file { '/usr/local/bin/facter':
     ensure  => 'link',
     target  => '/opt/puppet/bin/facter',
-    require => Package['pe-facter'],
+    require => Package[$pe_agent_pkgs],
   }
 
   file { '/usr/local/bin/puppet':
     ensure  => 'link',
     target  => '/opt/puppet/bin/puppet',
-    require => Package['pe-puppet'],
+    require => Package[$pe_agent_pkgs],
   }
 
   file { '/usr/local/bin/hiera':
     ensure  => 'link',
     target  => '/opt/puppet/bin/facter',
-    require => Package['pe-rubygem-hiera'],
+    require => Package[$pe_agent_pkgs],
   }
 }
