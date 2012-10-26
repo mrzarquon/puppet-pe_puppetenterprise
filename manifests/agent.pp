@@ -3,10 +3,7 @@ class pe_puppetenterprise::agent(
   $pe_master = $pe_puppetenterprise::params::pe_master
 ) inherits pe_puppetenterprise::params{
 
-  package { $pe_agent_pkgs:
-    ensure => present,
-    before => File['/etc/puppetlabs/facter'],
-  }
+  create_resources(package, hiera_hash(pe_agent_packages))
 
   file { '/etc/puppetlabs/facter':
     ensure => directory,
