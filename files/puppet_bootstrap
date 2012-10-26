@@ -1,0 +1,4 @@
+_x-puppet._tcp.$srv_domain
+_x-puppet-ca._tcp.$srv_domain
+_x-puppet-report._tcp.$srv_domain
+_x-puppet-fileserver._tcp.$srv_domain
