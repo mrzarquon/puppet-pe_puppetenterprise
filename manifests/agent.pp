@@ -32,7 +32,7 @@ fact_is_puppetca=false
 fact_is_puppetconsole=false",
   }
 
-  service { 'pe-puppet-agent':
+  service { 'pe-puppet':
     ensure  => running,
     require => File['/etc/puppetlabs/puppet/puppet.conf'],
   }
